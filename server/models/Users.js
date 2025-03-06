@@ -18,6 +18,10 @@ const User = new Schema({
         type: Boolean,
         default: true,
     },
+    otp: {
+        type: Number,
+        default: null
+    },
 });
 
 const user = mongoose.model('User',User);
