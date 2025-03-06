@@ -10,5 +10,4 @@ const MF = new Schema({
     },
 });
 
-const mf = mongoose.model('MedicalField',MF);
-module.exports = { mf };
+module.exports = mongoose.model('MedicalField',MF);
