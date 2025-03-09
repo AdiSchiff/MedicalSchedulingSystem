@@ -83,7 +83,7 @@ const getBookedAppointments = async (req, res) => {
     }
 };
 
-const cancelAppointments = async (req, res) => {
+const cancelAppointment = async (req, res) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
         if (!await loginController.isLoggedIn(token)) {
@@ -99,4 +99,4 @@ const cancelAppointments = async (req, res) => {
     }
 };
 
-module.exports = { getBookedAppointments, getMyAppointments, bookAppointment, cancelAppointments }
+module.exports = { getBookedAppointments, getMyAppointments, bookAppointment, cancelAppointment }

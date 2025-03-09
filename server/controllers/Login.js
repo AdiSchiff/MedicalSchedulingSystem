@@ -6,10 +6,10 @@ const key = "Secret"
 const getOTP = async (req, res) => {
     const phone = req.body.phone;
     try {
-        const otp = () => Math.floor(1000 + Math.random() * 9000);
-        const result = await userService.updateOTP(phone, otp)
+        const generateOTP = () => Math.floor(1000 + Math.random() * 9000);
+        const result = await userService.updateOTP(phone, generateOTP())
         if (result) {
-            res.status(200).json(otp); 
+            res.status(201).json({otp: result.otp}); 
         } else
             res.status(404).send('User with the given phone number was not found')
     } catch (error) {
@@ -19,7 +19,7 @@ const getOTP = async (req, res) => {
 
 const login = async (req, res) => {
     const phone = req.body.phone;
-    const recievedOTP = req.params.opt;
+    const recievedOTP = req.body.opt;
     try {
         const user = await userService.getUser(phone)
         if(user){
@@ -30,7 +30,7 @@ const login = async (req, res) => {
                     pid: user.pid,
                 }
                 const token = jwt.sign(data, key);
-                res.status(200).json(token);
+                res.status(201).json(token);
             } else {
                 return res.status(401).send();
             }

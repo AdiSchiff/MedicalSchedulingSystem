@@ -4,7 +4,7 @@ const router = express.Router();
 const appointmentsController = require('../controllers/Appointments');
 
 router.route('/')
-    .post(appointmentsController.cancelAppointments)
+    .post(appointmentsController.cancelAppointment)
     .get(appointmentsController.getBookedAppointments);
 router.route('/:pid')
     .get(appointmentsController.getMyAppointments)

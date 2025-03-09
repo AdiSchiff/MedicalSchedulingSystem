@@ -12,13 +12,13 @@ const getUser = async (req, res) => {
             return res.status(404).send(null);
         }
         //If the user is new update that now he is not 
-        if(user.new==true){
-            await userService.notNew(req.params.pid);
+        if(user.isNewUser==true){
+            await userService.notNew(user.pid);
         }
         return res.status(200).json({
             username: user.username,
             pid: user.pid,
-            new: user.new
+            isNew: user.isNewUser
         });
     } catch (error) {
         alert(error)

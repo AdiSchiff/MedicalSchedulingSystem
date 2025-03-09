@@ -7,7 +7,8 @@ const getUser = async (phone) => {
 const notNew = async (pid) => {
     return User.findOneAndUpdate(
         { pid: pid }, // Find user by pid
-        { $set: { new: false } }, // Update 'new' attribute to false
+        { $set: { isNewUser: false } }, // Update 'new' attribute to false
+        { new: true }
     );
 };
 
@@ -15,6 +16,7 @@ const updateOTP = async (phone, otp) => {
     return User.findOneAndUpdate(
         { phone: phone }, // Find user by phone
         { $set: { otp: otp } }, // Update 'otp' attribute to the current one
+        { new: true }
     );
 };
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const MedicalField = require('./Medical_fields');
 
 const Schema = mongoose.Schema;
 const Doctor = new Schema({
@@ -6,7 +7,7 @@ const Doctor = new Schema({
         type: String,
     },
     mfid: {
-        type: [MedicalField],
+        type: [MedicalField.mfid],
     },
     did: {
         type: Number,

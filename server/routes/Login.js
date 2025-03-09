@@ -4,6 +4,6 @@ const express = require('express');
 var router = express.Router();
 
 router.route('/').post(loginController.getOTP);
-router.route('/:otp').get(loginController.login);
+router.route('/otp').post(loginController.login);
 
 module.exports = router;

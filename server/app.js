@@ -14,10 +14,7 @@ console.log(process.env.CONNECTION_STRING)
 console.log(process.env.PORT)
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.CONNECTION_STRING, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(process.env.CONNECTION_STRING);
 
 app.use(express.static('public'));
 
@@ -34,6 +31,6 @@ const doctor = require('./routes/Doctors')
 app.use('/api/Doctors',doctor);
 
 const appointment = require('./routes/Appointments')
-app.use('/api/Chats',appointment);
+app.use('/api/Appointments',appointment);
 
 app.listen(process.env.PORT);
