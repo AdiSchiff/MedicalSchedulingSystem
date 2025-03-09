@@ -1,0 +1,59 @@
+body {
+    background-image: url('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1480&t=st=1682255201~exp=1682255801~hmac=806e75e517056ba3140dd73d902b03142d718666f3a17fbbe57327b00e4a8bea');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    align-content: center;
+}
+.title {
+    display: revert !important;
+    text-align: center !important;
+    color: #5183a6;
+    margin-top: 20px;
+    font-size: 25px !important;
+}
+
+.card-header {
+    display: revert !important;
+    text-align: center !important;
+    color: #5183a6;
+    font-weight: normal !important;
+    font-size: 18px !important;
+    padding: 10px;
+    border-width: 1px;
+    border-bottom-color: #97aabe !important;
+}
+
+.card-body {
+    height: initial !important;
+}
+
+.card {
+    /*height: initial !important;*/
+    /*margin-top: auto;*/
+    /*margin-bottom: auto;*/
+    width: 400px;
+    background-color: #f1f6fb !important;
+    border-radius: 6px;
+    border-width: 1px;
+}
+
+input {
+    position: absolute;
+    width: 30%;
+    margin: 10px !important;
+}
+
+::placeholder {
+    font-weight: bold;
+    opacity: 0.5;
+    color: #84abc5 !important;
+}
+
+.link {
+    color: #434760 !important;
+}
