@@ -12,7 +12,7 @@ Welcome to **Sheba's Medical Scheduling System**, an easy-to-use platform that a
 Before setting up the project, make sure you have the following installed:
 
 - [Node.js](https://nodejs.org/) (LTS version recommended)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/)
 
 ### Steps to Set Up
 
