@@ -9,6 +9,7 @@ function CancelAppointment({token, doctorsMap, mfMap}) {
     const [selectedMFID, setSelectedMFID] = useState("");
     const [selectedDoctorId, setSelectedDoctorId] = useState("");
     const [selectedDate, setSelectedDate] = useState("");
+    const [reset, setReset] = useState(true);
 
     function validateAndCancel() {
         if (!selectedMFID || !selectedDoctorId || !selectedDate) {
@@ -19,6 +20,10 @@ function CancelAppointment({token, doctorsMap, mfMap}) {
         const confirmation = window.confirm("Are you sure you want to cancel this appointment?");
         if (confirmation) {
             cancelAppointment();
+            setSelectedDoctorId("")
+            setSelectedDate("")
+            setSelectedMFID("")
+            setReset(!reset)
         }
     }
 
@@ -47,7 +52,7 @@ function CancelAppointment({token, doctorsMap, mfMap}) {
     return (
         <div>
             <h4>Select the appointment you wish to cancel:</h4>
-            <SelectAppointment doctorsMap={doctorsMap} mfMap={mfMap}
+            <SelectAppointment reset={reset} doctorsMap={doctorsMap} mfMap={mfMap}
                                setAPID={setAPID}
                                setSelectedMFID={setSelectedMFID}
                                setSelectedDoctorId={setSelectedDoctorId}

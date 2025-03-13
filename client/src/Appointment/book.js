@@ -7,6 +7,7 @@ function BookNewAppointment({token, doctorsMap, mfMap, pid}) {
     const [selectedMFID, setSelectedMFID] = useState("");
     const [selectedDoctorId, setSelectedDoctorId] = useState("");
     const [selectedDate, setSelectedDate] = useState("");
+    const [reset, setReset] = useState(true);
 
     useEffect(() => {
         getBookedAppointments();
@@ -40,9 +41,7 @@ function BookNewAppointment({token, doctorsMap, mfMap, pid}) {
         }
         bookAppointment();
         // Reset all the selections when a meeting was booked
-        setSelectedMFID("");
-        setSelectedDoctorId("");
-        setSelectedMFID("");
+        setReset(!reset)
     }
 
     async function bookAppointment() {
@@ -77,7 +76,7 @@ function BookNewAppointment({token, doctorsMap, mfMap, pid}) {
     return (
         <div>
             <h4>Select the details for your new appointment:</h4>
-            <ChooseForAppointment showMedicalField={true} doctorsMap={doctorsMap} mfMap={mfMap} setSelectedDate={setSelectedDate}
+            <ChooseForAppointment reset={reset} showMedicalField={true} doctorsMap={doctorsMap} mfMap={mfMap} setSelectedDate={setSelectedDate}
                                   selectedDate={selectedDate} setSelectedMFID={setSelectedMFID} selectedMFID={selectedMFID}
                                   setSelectedDoctorId={setSelectedDoctorId} selectedDoctorId={selectedDoctorId}/>
 

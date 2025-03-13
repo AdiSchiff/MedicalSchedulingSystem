@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {useAppointments} from "./AppointmentsContext";
 
-function SelectAppointment({ doctorsMap, mfMap, setAPID, setSelectedMFID, setSelectedDoctorId, setSelectedDate }) {
+function SelectAppointment({ reset, doctorsMap, mfMap, setAPID, setSelectedMFID, setSelectedDoctorId, setSelectedDate }) {
     const { futureAppointments } = useAppointments();
     const [selectedMFID, setLocalSelectedMFID] = useState("");
     const [selectedDoctorId, setLocalSelectedDoctorId] = useState("");
@@ -73,6 +73,13 @@ function SelectAppointment({ doctorsMap, mfMap, setAPID, setSelectedMFID, setSel
         setSelectedDate(selectedDate);
         setSelectedMFID(selectedMFID);
     }, [selectedMFID, selectedDoctorId, selectedDate, futureAppointments, setAPID, setSelectedDoctorId, setSelectedDate, setSelectedMFID]);
+
+    // Reset the selection fields when the action happened
+    useEffect(() => {
+        setLocalSelectedMFID("")
+        setLocalSelectedDoctorId("")
+        setLocalSelectedDate("")
+    }, [reset, setLocalSelectedMFID, setLocalSelectedDoctorId, setLocalSelectedDate]);
 
     return (
         <div>

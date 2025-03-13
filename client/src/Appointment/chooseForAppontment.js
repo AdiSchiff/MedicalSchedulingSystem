@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {useAppointments} from "./AppointmentsContext";
 
-function ChooseForAppointment({ showMedicalField, doctorsMap, mfMap, setSelectedMFID, selectedMFID, setSelectedDoctorId, selectedDoctorId, setSelectedDate, selectedDate }) {
+function ChooseForAppointment({ reset, showMedicalField, doctorsMap, mfMap, setSelectedMFID, selectedMFID, setSelectedDoctorId, selectedDoctorId, setSelectedDate, selectedDate }) {
     const { bookedAppointments } = useAppointments();
     const [selectedDay, setSelectedDay] = useState("");
     const [selectedTime, setSelectedTime] = useState("");
@@ -73,7 +73,7 @@ function ChooseForAppointment({ showMedicalField, doctorsMap, mfMap, setSelected
         }
 
         return filteredMFs.map(([mfid, speciality]) => ({ mfid, speciality }));
-    }, [selectedDoctorId, selectedDay, selectedDate, mfMap]);
+    }, [mfMap, selectedDoctorId, selectedDay, selectedDate, doctorsMap, bookedByDateDidMfid, bookedAppointments]);
 
     // Filtered Doctors based on selected Medical Field
     const availableDoctors = useMemo(() => {
@@ -99,7 +99,7 @@ function ChooseForAppointment({ showMedicalField, doctorsMap, mfMap, setSelected
         }
 
         return filteredDoctors.map(([did, doctor]) => ({ did, name: doctor.name }));
-    }, [selectedMFID, selectedDay, selectedDate, doctorsMap]);
+    }, [doctorsMap, selectedMFID, selectedDate, selectedDay, bookedAppointments]);
 
     const availableDays = useMemo(() => {
         const today = new Date();
@@ -140,7 +140,7 @@ function ChooseForAppointment({ showMedicalField, doctorsMap, mfMap, setSelected
             return true;
         });
 
-    }, [selectedMFID, selectedDoctorId, bookedAppointments]);
+    }, [selectedDoctorId, selectedMFID, bookedByDateDidMfid, doctorsWithMFID]);
 
 
     const availableTimeSlots = useMemo(() => {
@@ -170,17 +170,26 @@ function ChooseForAppointment({ showMedicalField, doctorsMap, mfMap, setSelected
 
         return TimeSlots.filter(slot => !bookedSlots.includes(slot)&&
             (selectedDay !== today || slot >= currentTime));
-    }, [selectedDay, bookedAppointments, selectedMFID, selectedDoctorId]);
+    }, [selectedDoctorId, selectedMFID, bookedAppointments, selectedDay, doctorsWithMFID]);
 
     // Update date when day and time fields are selected
-    useMemo(() => {
+    useEffect(() => {
         if (selectedTime && selectedDay) {
             const combinedDate = new Date(`${selectedDay}T${selectedTime}`);
             setSelectedDate(combinedDate.toISOString());
         } else {
             setSelectedDate("")
         }
-    }, [selectedTime, selectedDay]);
+    }, [selectedTime, selectedDay, setSelectedDate]);
+
+    // Reset the selection fields when the action happened
+    useEffect(() => {
+        setSelectedTime("")
+        setSelectedDate("")
+        setSelectedMFID("")
+        setSelectedDay("")
+        setSelectedDoctorId("")
+    }, [reset, setSelectedDate, setSelectedDoctorId, setSelectedMFID]);
 
     return (
         <div>

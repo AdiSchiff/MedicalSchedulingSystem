@@ -11,6 +11,7 @@ function RescheduleAppointment({token, doctorsMap, mfMap, pid}) {
     const [selectedDate, setSelectedDate] = useState("");
     const [selectedNewDid, setSelectedNewDid] = useState("");
     const [selectedNewDate, setSelectedNewDate] = useState("");
+    const [reset, setReset] = useState(true);
 
     useEffect(() => {
         getBookedAppointments();
@@ -53,6 +54,7 @@ function RescheduleAppointment({token, doctorsMap, mfMap, pid}) {
             setSelectedDate("");
             setSelectedNewDid("");
             setSelectedNewDate("");
+            setReset(!reset)
             alert("The appointment rescheduled successfully")
         }
     }
@@ -113,11 +115,12 @@ function RescheduleAppointment({token, doctorsMap, mfMap, pid}) {
     return (
         <div>
             <h4>Select the appointment you wish to reschedule:</h4>
-            <SelectAppointment doctorsMap={doctorsMap} mfMap={mfMap} setAPID={setAPID} setSelectedMFID={setSelectedMFID}
+            <SelectAppointment reset={reset} doctorsMap={doctorsMap} mfMap={mfMap} setAPID={setAPID} setSelectedMFID={setSelectedMFID}
                                setSelectedDoctorId={setSelectedDoctorId} setSelectedDate={setSelectedDate}/>
 
             <h4>Update your appointment details:</h4>
-            <ChooseForAppointment showMedicalField={false} doctorsMap={doctorsMap} mfMap={mfMap} selectedMFID={selectedMFID}
+            <ChooseForAppointment reset={reset} showMedicalField={false} doctorsMap={doctorsMap} mfMap={mfMap}
+                                  setSelectedMFID={setSelectedMFID} selectedMFID={selectedMFID}
                                   setSelectedDate={setSelectedNewDate} selectedDate={selectedNewDate}
                                   setSelectedDoctorId={setSelectedNewDid}  selectedDoctorId={selectedNewDid}/>
 
