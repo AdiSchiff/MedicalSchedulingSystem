@@ -61,7 +61,7 @@ function Part2({setToken, setIsFlagOn, setPhone, phone}) {
                 <div className="input-group form-group">
                     <input type="submit" value="Log in" className="btn btn-primary float-right"></input>
                 </div>
-                <button onClick={setFlag} type="button" className="btn btn-link">Back</button>
+                <button className="linkBtn" onClick={setFlag} >Back</button>
             </form>
         </div>
     );

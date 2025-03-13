@@ -10,7 +10,7 @@ function Login({setToken, setPhone}) {
     return (
         <div className="container">
             <div className="title">
-                Welcome to SHEBA's Medical Scheduling System
+                Welcome to Sheba's Medical Scheduling System
             </div>
             <div className="d-flex justify-content-center h-100 align-items-center vh-100">
                 <div className="card">

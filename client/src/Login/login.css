@@ -1,59 +1,72 @@
 body {
-    background-image: url('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1480&t=st=1682255201~exp=1682255801~hmac=806e75e517056ba3140dd73d902b03142d718666f3a17fbbe57327b00e4a8bea');
+    background-color: #f8f9fa;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 .container {
-    height: 100%;
-    align-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 .title {
-    display: revert !important;
-    text-align: center !important;
-    color: #5183a6;
+    font-size: 28px;
     margin-top: 20px;
-    font-size: 25px !important;
-}
-
-.card-header {
-    display: revert !important;
-    text-align: center !important;
-    color: #5183a6;
-    font-weight: normal !important;
-    font-size: 18px !important;
-    padding: 10px;
-    border-width: 1px;
-    border-bottom-color: #97aabe !important;
-}
-
-.card-body {
-    height: initial !important;
 }
 
 .card {
-    /*height: initial !important;*/
-    /*margin-top: auto;*/
-    /*margin-bottom: auto;*/
     width: 400px;
-    background-color: #f1f6fb !important;
+    background-color: #f1f6fb;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+    margin-bottom: auto;
     border-radius: 6px;
     border-width: 1px;
+}
+
+.card-header {
+    text-align: center;
+    font-weight: normal;
+    font-size: 20px;
+    padding: 10px;
+    border-width: 1px;
+    border-bottom-color: #97aabe;
 }
 
 input {
     position: absolute;
     width: 30%;
-    margin: 10px !important;
+    margin: 10px;
 }
 
 ::placeholder {
     font-weight: bold;
     opacity: 0.5;
-    color: #84abc5 !important;
+    color: #a6a7a8 !important;
 }
 
-.link {
-    color: #434760 !important;
+.btn-primary {
+    background-color: #8298a8;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #6c7f8c;
+}
+
+.linkBtn {
+    text-decoration: none !important;
+    color: #8298a8;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.linkBtn:hover {
+    color: #6c7f8c;
 }
