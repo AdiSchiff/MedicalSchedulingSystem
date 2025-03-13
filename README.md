@@ -17,21 +17,21 @@ Before setting up the project, make sure you have the following installed:
 ### Steps to Set Up
 
 1. **Clone the repository**
-   git clone https://github.com/your-username/sheba-medical-scheduling.git
-   cd sheba-medical-scheduling
+   -git clone https://github.com/your-username/sheba-medical-scheduling.git
+   -cd sheba-medical-scheduling
    
 2. **Install dependencies for the server and start the appication**
-   cd server
+   -cd server
    
-   2.1. npm install
-   2.2 npm start
+   -2.1. npm install
+   -2.2 npm start
    
 3. **Install dependencies for the client and start the appication**
-   cd ..
-   cd client
+   -cd ..
+   -cd client
    
-   3.1. npm install
-   3.2 npm start
+   -3.1. npm install
+   -3.2 npm start
 
 ---
 
