@@ -6,7 +6,7 @@ const Doctor = new Schema({
     username: {
         type: String,
     },
-    mfid: {
+    mfids: {
         type: [MedicalField.mfid],
     },
     did: {

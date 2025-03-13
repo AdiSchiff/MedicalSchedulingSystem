@@ -7,29 +7,26 @@ const bookAppointment = async (req, res) => {
         if (!await loginController.isLoggedIn(token)) {
             return res.status(401).send();
         }
-        const apid = req.body.apid;
-        if(apid!=null){
-            const alreadyExists = await AppointmentsService.getAppointmentByAPID(apid)
-            if (alreadyExists) {
-                if(alreadyExists.free){
-                    const appointment = await AppointmentsService.bookAppointment(apid, req.params.pid)
-                    if(!appointment){
-                        return res.status(500).json("Somthing went wrong try again");
-                    } else {
-                        return res.status(200).json(appointment);
-                    }
-                } else {
-                    return res.status(409).json("This appointment is already booked");
-                }
-            } else {
-                return res.status(404).json("This apid was not found");
-            }
+        const date = req.body.date;
+        const did = req.body.did;
+        const mfid = req.body.mfid;
+        const pid = req.params.pid;
+        
+        const alreadyExists = await AppointmentsService.getAppointmentByIDs(date, did)
+        if(alreadyExists){
+            return res.status(409).json("This appointment is already booked");
         } else {
-            const newAppointment = await AppointmentsService.createNewAppointment( req.body.date, req.body.did, req.params.pid, req.body.mfid)
+            const newAppointment = await AppointmentsService.createNewAppointment( date, did, pid, mfid)
             if(!newAppointment){
                 return res.status(500).json("Somthing went wrong try again");
             } else {
-                return res.status(200).json(newAppointment);
+                const filteredAppointment = {
+                    date: newAppointment.date,
+                    did: newAppointment.did,
+                    apid: newAppointment.apid,
+                    mfid: newAppointment.mfid
+                }
+                return res.status(201).json(filteredAppointment);
             }
         }
     } catch (error) {
@@ -47,7 +44,8 @@ const getMyAppointments = async (req, res) => {
         if (!myAppointments || myAppointments.length === 0) {
             return res.status(404).send("No appointments found for the given pid");
         }
-        return res.status(200).json(myAppointments);
+        const filteredAppointments = myAppointments.map(({ date, did, apid, mfid }) => ({ date, did, apid, mfid }));
+        return res.status(200).json(filteredAppointments);
     } catch (error) {
         alert(error)
     }
@@ -93,7 +91,7 @@ const cancelAppointment = async (req, res) => {
         if (!appointment) {
             return res.status(404).send("Wrong apid");
         }
-        return res.status(200).json(appointment);
+        return res.status(201).json({ apid: appointment.apid });
     } catch (error) {
         alert(error)
     }

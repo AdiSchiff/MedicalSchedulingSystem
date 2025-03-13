@@ -1,8 +1,7 @@
 const Appointments = require('../models/Appointments');
 
-//Generate a apid by Auto Increment
 async function defineApid(AppointmentModel) {
-    let currentAppointment = await AppointmentModel.findOne().sort({ pid: -1 }).select('apid').lean();
+    let currentAppointment = await AppointmentModel.findOne().sort({ apid: -1 }).select('apid').lean();
     let newApid = currentAppointment ? currentAppointment.apid + 1 : 1;
     return newApid;
 }
@@ -21,32 +20,24 @@ const createNewAppointment = async (date, did, pid, mfid) => {
     return await newAppointment.save();
 };
 
-const bookAppointment = async (apid, pid) => {
-    return await Appointments.findOneAndUpdate(
-        { apid: apid },
-        { $set: { free: false, pid: pid } }, 
-        { new: true }
-    );
-};
-
 const cancelAppointment = async (apid) => {
     return Appointments.findOneAndUpdate(
         { apid: apid }, 
-        { $set: { free: true, pid: null } }, 
+        { $set: { free: true } }, 
         { new: true }
     );
 };
 
 const getAppointmentsByPID = async (pid) => {
-    return await Appointments.find({ pid: pid });
+    return await Appointments.find({ pid: pid, free: false });
 };
 
 const getAppointmentsByNotFree = async () => {
     return await Appointments.find({ free: false });
 };
 
-const getAppointmentByAPID = async (apid) => {
-    return await Appointments.findById(apid);
+const getAppointmentByIDs = async (date, did) => {
+    return await Appointments.findOne({date, did, free: false});
 };
 
-module.exports = { getAppointmentsByPID, cancelAppointment, bookAppointment, getAppointmentByAPID, getAppointmentsByNotFree, createNewAppointment }
+module.exports = { getAppointmentsByPID, cancelAppointment, getAppointmentByIDs, getAppointmentsByNotFree, createNewAppointment }

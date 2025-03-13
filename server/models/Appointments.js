@@ -19,7 +19,8 @@ const Appointment = new Schema({
     },
     mfid: {
         type: Number,
-    },
-});
+    }
+}, { versionKey: false });
+
 
 module.exports = mongoose.model('Appointment',Appointment);
