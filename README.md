@@ -11,14 +11,15 @@ Welcome to **Sheba's Medical Scheduling System**, an easy-to-use platform that a
 
 Before setting up the project, make sure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (LTS version recommended)
-- [npm](https://www.npmjs.com/)
+ [Node.js](https://nodejs.org/) (LTS version recommended)
+ [npm](https://www.npmjs.com/)
 
 ### Steps to Set Up
 
-1. **Clone the repository**
-   -git clone https://github.com/your-username/sheba-medical-scheduling.git
-   -cd sheba-medical-scheduling
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/your-username/sheba-medical-scheduling.git  
+   cd sheba-medical-scheduling
    
 2. **Install dependencies for the server and start the appication**
    -cd server
