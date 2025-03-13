@@ -1,4 +1,3 @@
-import './dashboard.css'
 import {useEffect, useState} from "react";
 import NewDashboard from "./newDashboard";
 import MyDashboard from "./myDashboard";
