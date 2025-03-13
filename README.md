@@ -22,17 +22,17 @@ Before setting up the project, make sure you have the following installed:
    cd sheba-medical-scheduling
    
 2. **Install dependencies for the server and start the appication**
-   -cd server
-   
-   -2.1. npm install
-   -2.2 npm start
+   ```bash
+   cd server
+   npm install
+   npm start
    
 3. **Install dependencies for the client and start the appication**
-   -cd ..
-   -cd client
-   
-   -3.1. npm install
-   -3.2 npm start
+   ```bash
+   cd ..
+   cd client
+   npm install
+   npm start
 
 ---
 
