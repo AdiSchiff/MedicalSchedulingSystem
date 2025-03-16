@@ -1,8 +1,6 @@
 const userService = require('../services/Users');
 const jwt = require("jsonwebtoken");
 
-const key = "Secret"
-
 const getOTP = async (req, res) => {
     const phone = req.body.phone;
     try {
@@ -29,7 +27,7 @@ const login = async (req, res) => {
                     username: user.username,
                     pid: user.pid,
                 }
-                const token = jwt.sign(data, key);
+                const token = jwt.sign(data, process.env.key);
                 res.status(201).json(token);
             } else {
                 return res.status(401).send();
@@ -44,7 +42,7 @@ const login = async (req, res) => {
 function isLoggedIn(token) {
     try {
         const modifiedToken = token.substring(1, token.length - 1);
-        const decoded = jwt.verify(modifiedToken, key);
+        const decoded = jwt.verify(modifiedToken, process.env.key);
         // Token verification successful
         return decoded.pid
     } catch (error) {
