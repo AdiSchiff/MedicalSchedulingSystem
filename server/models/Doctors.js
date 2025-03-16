@@ -17,4 +17,4 @@ const Doctor = new Schema({
     },
 });
 
-module.exports = mongoose.model('Doctor',Doctor);;
+module.exports = mongoose.model('Doctor',Doctor);

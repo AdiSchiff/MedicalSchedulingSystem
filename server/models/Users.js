@@ -14,6 +14,9 @@ const User = new Schema({
     pid: {
         type: Number,
     },
+    fid: {
+        type: Number,
+    },
     isNewUser: {
         type: Boolean,
         default: true,
