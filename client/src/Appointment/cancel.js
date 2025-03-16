@@ -29,7 +29,7 @@ function CancelAppointment({token, doctorsMap, mfMap}) {
 
     async function cancelAppointment() {
         try {
-            const res = await fetch('http://localhost:5000/api/Appointments/', {
+            const res = await fetch(process.env.REACT_APP_API_URL + '/api/Appointments/', {
                 'method': 'post',
                 'headers': {
                     'Content-Type': 'application/json',

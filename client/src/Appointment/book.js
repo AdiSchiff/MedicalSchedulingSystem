@@ -16,7 +16,7 @@ function BookNewAppointment({token, doctorsMap, mfMap, pid}) {
 
     async function getBookedAppointments() {
         try {
-            const res = await fetch('http://localhost:5000/api/Appointments/', {
+            const res = await fetch(process.env.REACT_APP_API_URL + '/api/Appointments/', {
                 'method': 'get',
                 'headers': {
                     'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ function BookNewAppointment({token, doctorsMap, mfMap, pid}) {
             date: selectedDate,
         }
         try {
-            const res = await fetch('http://localhost:5000/api/Appointments/' + pid, {
+            const res = await fetch(process.env.REACT_APP_API_URL + '/api/Appointments/' + pid, {
                 'method': 'post',
                 'headers': {
                     'Content-Type': 'application/json',

@@ -71,7 +71,7 @@ function MyDashboard({token, setPID, pid, family}) {
 
     async function getMyAppointments() {
         try {
-            const res = await fetch('http://localhost:5000/api/Appointments/' + pid, {
+            const res = await fetch(process.env.REACT_APP_API_URL + '/api/Appointments/' + pid, {
                 'method': 'get',
                 'headers': {
                     'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ function MyDashboard({token, setPID, pid, family}) {
 
     async function getDoctors() {
         try {
-            const res = await fetch('http://localhost:5000/api/Doctors/', {
+            const res = await fetch(process.env.REACT_APP_API_URL + '/api/Doctors/', {
                 'method': 'get',
                 'headers': {
                     'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ function MyDashboard({token, setPID, pid, family}) {
 
     async function getMF() {
         try {
-            const res = await fetch('http://localhost:5000/api/MedFields/', {
+            const res = await fetch(process.env.REACT_APP_API_URL + '/api/MedFields/', {
                 'method': 'get',
                 'headers': {
                     'Content-Type': 'application/json',

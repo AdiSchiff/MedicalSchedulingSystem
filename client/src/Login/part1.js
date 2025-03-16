@@ -23,7 +23,7 @@ function Part1({setPhone, setIsFlagOn}) {
             "phone": phone,
         }
         try {
-            const res = await fetch('http://localhost:5000/api/Tokens', {
+            const res = await fetch(process.env.REACT_APP_API_URL + '/api/Tokens', {
                 'method': 'post',
                 'headers': {
                     'Content-Type': 'application/json',

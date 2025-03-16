@@ -17,7 +17,7 @@ function Dashboard({token, phone}) {
 
     async function getUserDetails() {
         try {
-            const res = await fetch('http://localhost:5000/api/Users/' + phone, {
+            const res = await fetch(process.env.REACT_APP_API_URL + '/api/Users/' + phone, {
                 'method': 'get',
                 'headers': {
                     'Content-Type': 'application/json',
