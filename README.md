@@ -67,6 +67,7 @@ Before setting up the project, make sure you have the following installed:
    - **Doctors Collection**: Contains doctor profiles, specialties, and assigned medical fields.
    - **Appointments Collection**: Tracks scheduled appointments, their status and appointments history.
    - **Medical Fields Collection**: Stores different specialties and links them to relevant doctors.
+   - **Family Collection**: Represents the relationships between users who are family members.
 
 6. **API Design (RESTful API)**
    The communication between the front-end and back-end is done using **RESTful APIs**.
@@ -93,3 +94,6 @@ Before setting up the project, make sure you have the following installed:
    Users can view their upcoming appointments.
    View their appointments history.
    
+4. **Family Member Management**
+   Users can manage appointments for their family members, including booking, rescheduling, and canceling appointments.
+   They can also view the appointments history and upcoming appointments for each family member linked to their account.
