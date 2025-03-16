@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useAppointments} from "../Appointment/AppointmentsContext";
 import AppointmentsList from "./appointmentsList";
 
-function MyDashboard({token, pid}) {
+function MyDashboard({token, setPID, pid, family}) {
     const navigate = useNavigate()
     const { futureAppointments, setFutureAppointments } = useAppointments();
     const [oldAppointments, setOld] = useState([]);
@@ -13,7 +13,7 @@ function MyDashboard({token, pid}) {
 
     useEffect(() => {
         getMyAppointments();
-    },[futureAppointments]);
+    },[pid]);
 
     useEffect(() => {
         getDoctors();
@@ -56,6 +56,19 @@ function MyDashboard({token, pid}) {
         return {};
     }, [doctors, mfMap]);
 
+    const familyMap = useMemo(() => {
+        if (family && family.length > 0) {
+            return family.reduce((acc, member) => {
+                acc[member.pid] = {
+                    name: member.name,
+                    lastname: member.lastname,
+                };
+                return acc;
+            }, {});
+        }
+        return {};
+    }, [family]);
+
     async function getMyAppointments() {
         try {
             const res = await fetch('http://localhost:5000/api/Appointments/' + pid, {
@@ -67,13 +80,16 @@ function MyDashboard({token, pid}) {
             })
             if (res.status !== 200 && res.status !== 404) {
                 throw new Error('Something went wrong')
-            } else if(res.status == 200) {
+            } else if(res.status === 200) {
                 const data = await res.json();
                 const old = data.filter(appointment => new Date(appointment.date) < now);
                 const future = data.filter(appointment => new Date(appointment.date) >= now);
 
                 setOld(old);
                 setFutureAppointments(future);
+            } else if(res.status === 404){
+                setOld([]);
+                setFutureAppointments([]);
             }
         } catch (error) {
             alert(error);
@@ -122,6 +138,16 @@ function MyDashboard({token, pid}) {
 
     return (
         <div>
+            {/* Family Member Selection */}
+            <h5>Switch Family Member:</h5>
+            <select onChange={(e) => setPID(e.target.value)} value={pid} className="form-control">
+                {Object.entries(familyMap).map(([pid, member]) => (
+                    <option key={pid} value={pid}>
+                        {member.name} {member.lastname}
+                    </option>
+                ))}
+            </select>
+
             {/* Future Appointments List */}
             <h2>Upcoming Appointments:</h2>
             <AppointmentsList appointments={futureAppointments} doctorsMap={doctorsMap} mfMap={mfMap}/>

@@ -1,11 +1,15 @@
 import {useEffect, useState} from "react";
 import NewDashboard from "./newDashboard";
 import MyDashboard from "./myDashboard";
+import {useLocation} from "react-router-dom";
 
 function Dashboard({token, phone}) {
+    const location = useLocation();
+    const { pid } = location.state || {};
     const [username, setUsername] = useState("");
-    const [pid, setPID] = useState("");
+    const [pID, setPID] = useState("");
     const [isNew, setIsNew] = useState(true);
+    const [family, setFamily] = useState(true);
 
     useEffect(() => {
             getUserDetails();
@@ -25,8 +29,13 @@ function Dashboard({token, phone}) {
             } else {
                 const data = await res.json();
                 setUsername(data.username);
-                setPID(data.pid);
                 setIsNew(data.isNew);
+                setFamily(data.family);
+                if(pid){
+                    setPID(pid)
+                } else {
+                    setPID(data.pid);
+                }
             }
         } catch (error) {
             alert(error);
@@ -39,7 +48,7 @@ function Dashboard({token, phone}) {
             {isNew ? (
                 <NewDashboard username={username} setIsNew={setIsNew}/>
             ) : (
-                <MyDashboard token={token} pid={pid}/>
+                <MyDashboard token={token} setPID={setPID} pid={pID} family={family}/>
             )}
         </div>
     );

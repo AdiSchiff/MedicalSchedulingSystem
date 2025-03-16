@@ -10,7 +10,7 @@ function Appointment({token}) {
 
     return (
         <div>
-            <button onClick={() => navigate(`/dashboard`)} className="linkBtn">X</button>
+            <button onClick={() => navigate(`/dashboard`, { state: {pid}})} className="linkBtn">X</button>
                 {action === 'cancel' && <CancelAppointment token={token} doctorsMap={doctorsMap} mfMap={mfMap}/>}
                 {action === 'book' && <BookNewAppointment token={token} doctorsMap={doctorsMap} mfMap={mfMap} pid={pid} />}
                 {action === 'reschedule' && <RescheduleAppointment token={token} doctorsMap={doctorsMap} mfMap={mfMap} pid={pid}/>}
