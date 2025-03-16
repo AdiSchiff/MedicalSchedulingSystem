@@ -9,7 +9,9 @@ const cors = require('cors');
 app.use(cors());
 
 const custumeEnv = require('custom-env');
-custumeEnv.env(process.env.NODE_ENV, './config');
+// custumeEnv.env(process.env.NODE_ENV, './config');
+custumeEnv.env();
+
 console.log(process.env.CONNECTION_STRING)
 console.log(process.env.PORT)
 
