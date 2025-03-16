@@ -23,8 +23,10 @@ function BookNewAppointment({token, doctorsMap, mfMap, pid}) {
                     "authorization": 'Bearer ' + token,
                 },
             })
-            if (res.status !== 200) {
+            if (res.status !== 200 && res.status!== 404) {
                 throw new Error('Something went wrong')
+            } else if(res.status === 404) {
+                setBookedAppointments([]);
             } else {
                 const data = await res.json();
                 setBookedAppointments(data);
