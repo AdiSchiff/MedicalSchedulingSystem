@@ -97,3 +97,8 @@ Before setting up the project, make sure you have the following installed:
 4. **Family Member Management**
    Users can manage appointments for their family members, including booking, rescheduling, and canceling appointments.
    They can also view the appointments history and upcoming appointments for each family member linked to their account.
+
+---
+
+Link to the deployed app:
+https://medical-scheduling-system.vercel.app/
