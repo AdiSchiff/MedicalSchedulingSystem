@@ -8,7 +8,7 @@ function Dashboard({token, phone}) {
     const { pid } = location.state || {};
     const [username, setUsername] = useState("");
     const [pID, setPID] = useState("");
-    const [isNew, setIsNew] = useState(true);
+    const [isNew, setIsNew] = useState(false);
     const [family, setFamily] = useState(true);
 
     useEffect(() => {

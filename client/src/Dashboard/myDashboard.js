@@ -21,11 +21,11 @@ function MyDashboard({token, setPID, pid, family}) {
     },[]);
 
     const handleButtonClick = (action) => {
-        if(action === 'cancel' && !futureAppointments){
+        if(action === 'cancel' && futureAppointments.length === 0){
             alert("There are no future appointments to cancel")
             return;
         }
-        if(action === 'reschedule' && !futureAppointments){
+        if(action === 'reschedule' && futureAppointments.length === 0){
             alert("There are no future appointments to reschedule")
             return;
         }
